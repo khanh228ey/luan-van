@@ -20,7 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
+        'created_at',
+        'updated_at',
+        'phone',
     ];
 
     /**
@@ -50,8 +54,8 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id');
     }
 
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id'); khai báo nhiều nhiều
-    // }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 }
