@@ -11,7 +11,7 @@
                                  class="sr-only">(current)</span></a></li>
                      <li class="nav-item dropdown mega-menu"><a class="nav-link dropdown-toggle" href="#"
                              id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                             aria-expanded="false">Danh mục </a>
+                             aria-expanded="false">Danh mục</a>
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                              <div class="container">
                                  <div class="divider"></div>
@@ -24,7 +24,7 @@
                                                 @if ($key >3)
                                                     @break
                                                 @endif
-                                                    <li class="nav-item"><a class="nav-link" href="#">{{ $product->name }}</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -56,24 +56,12 @@
                              </div>
                          </div>
                      </li>
-                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
-                             id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                             aria-expanded="false">Pages </a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item"
-                                 href="index.html">Homepage</a>
-                             <div class="dropdown-divider"></div>
-                             <a class="dropdown-item" href="catalog.html">Catalog</a>
-                             <a class="dropdown-item" href="item.html">Item Detail</a>
-                             <a class="dropdown-item" href="cart.html">Cart</a>
-                             <div class="dropdown-divider"></div>
-                             <a class="dropdown-item" href="contact.html">Liên hệ</a>
-                         </div>
-                     </li>
-                     <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{route('product.list')}}">Danh sách sản phẩm</a></li>
+                     <li class="nav-item"><a class="nav-link" href="{{route('contact.index')}}">Liên hệ</a></li>
                      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                              id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                              aria-expanded="false"><i class="fas fa-shopping-cart"></i> <span
-                                 class="badge badge-pill badge-primary">3</span></a>
+                                 class="badge badge-pill badge-primary">0</span></a>
                          <div class="dropdown-menu dropdown-menu-right dropdown-cart"
                              aria-labelledby="navbarDropdown">
                              <h6>3 Items <span class="emphasis">$147.00</span></h6>

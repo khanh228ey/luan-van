@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -12,15 +13,21 @@ class HomeController extends Controller
 
     public function index()
     {
-        $category = category::with('products')
-            ->orderBy('created_at', 'asc')
-            ->limit(4)
-            ->get();
         $products= Product::orderBy('created_at', 'asc')
             ->limit(4)
             ->get();
-        return view('pages.home', compact('category','products'));
-    
+        $brand1 = Brand::orderBy('created_at', 'asc')
+            ->limit(1)
+            ->first();
+        $brand2 = Brand::orderBy('created_at', 'asc')
+            ->where('id', '!=', $brand1->id)
+            ->limit(1)
+            ->first();
+        $product = Product::with('brand')
+            ->orderBy('created_at', 'desc')
+            ->first(); 
+        return view('pages.home', compact('products', 'brand1', 'brand2', 'product'));
+
     }
 
 }

@@ -20,7 +20,7 @@
         <div class="carousel-inner">
 
             <!--Text only with background image-->
-            <div class="carousel-item active" style="background: url(images/cover-bg-1.jpg) center;">
+            <div class="carousel-item active" style="background: url({{ asset('assets/images/cover-bg-1.jpg') }}) center;">
                 <div class="container slide-textonly">
                     <div>
                         <h1>York &amp; Smith</h1>
@@ -39,13 +39,13 @@
                         <a href="#" class="btn btn-outline-secondary">View Collection</a>
                     </div>
                     <div class="slide-image">
-                        <img src="images/placeholder-shoes.png" style="width: 80%;">
+                        <img src="{{ asset('assets/images/placeholder-shoes.png') }}" style="width: 80%;">
                     </div>
                 </div>
             </div>
 
             <!--Text only with background image-->
-            <div class="carousel-item" style="background: url(images/cover-bg-2.jpg) center;">
+            <div class="carousel-item" style="background: url({{ asset('assets/images/cover-bg-2.jpg') }}) center;">
                 <div class="container slide-textonly">
                     <div>
                         <h1>York &amp; Smith</h1>
@@ -62,7 +62,7 @@
                 <div class="collection col-md-6 alt-background">
                     <div class="container container-right text-center">
                         <div>
-                            <h1>T-shirt</h1>
+                            <h1>{{$brand1->name}}</h1>
                             <p class="lead">Spring/Summer 2025 Collection</p>
                             <a href="catalog.html" class="btn btn-outline-secondary">Browse Women's</a>
                         </div>
@@ -71,7 +71,7 @@
                 <div class="collection col-md-6 bg-secondary inverted">
                     <div class="container container-left text-center">
                         <div>
-                            <h1>Polo-shirt</h1>
+                            <h1>{{$brand2->name}}</h1>
                             <p class="lead">Spring/Summer 2025 Collection</p>
                             <a href="catalog.html" class="btn btn-outline-white">Browse Men's</a>
                         </div>
@@ -84,13 +84,13 @@
         <div class="container">
             <div class="row justify-center">
                 <div class="col-md-6 text-center">
-                    <img class="mt-4 mb-4 img-fluid" src="images/placeholder-jacket.png" style="width: 100%;">
+                    <img class="mt-4 mb-4 img-fluid" src="{{ asset('storage/'.$product->image) }}" style="width: 100%;">
                 </div>
                 <div class="col-md-6 text-center text-md-left">
-                    <h2 class="mb-3">Spring/Summer Collection 2025</h2>
-                    <p class="lead mt-2 mb-3">Khám phá phong cách mùa xuân hè tươi mới đầy cuốn hút.</p>
-                    <p>Bộ sưu tập 2025 mang đến thiết kế tinh tế, gam màu rực rỡ, tôn vinh vẻ đẹp năng động mùa hè.</p>
-                    <a href="#" class="btn btn-md btn-outline-primary mt-3">Shop Now</a>
+                    <h2 class="mb-3">{{$product->brand->name}} Bộ Sưu tập 2025</h2>
+                    <p class="lead mt-2 mb-3">Sản phẩm nổi bật: {{$product->name}}.</p>
+                    <p>{{$product->description}}</p>
+                    <a href="{{ route('product.detail', $product->id) }}" class="btn btn-md btn-outline-primary mt-3">Mua ngay</a>
                 </div>
             </div>
         </div>
@@ -112,10 +112,10 @@
                                 </a></div>
                         </figcaption>
                     </figure>
-                    <h4><a href="item.html">{{$item->name}}</a></h4>
-                    <p><span class="emphasis">{{$item->price}} Đ</span></p>
-                </div>            
-                @endforeach         
+                    <h4><a href="{{ route('product.detail', $item->id) }}">{{ $item->name }}</a></h4>
+                    <p><span class="emphasis">{{ $item->price }} Đ</span></p>
+                </div>
+                @endforeach
             </div>
         </div>
     </section>

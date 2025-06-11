@@ -48,6 +48,6 @@ class Product extends Model
 
     public function product_details()
     {
-        return $this->hasOne(ProductDetail::class, 'product_id');
+        return $this->hasMany(ProductDetail::class, 'product_id');
     }
 }
