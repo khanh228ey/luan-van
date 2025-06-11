@@ -1,46 +1,19 @@
 <footer class="footer">
     <div class="container">
         <div class="row mb-5 text-center">
+            @foreach ($category as $item)                                   
             <div class="col-sm-6 col-md-3 pt-2">
-                <h5>Women's</h5>
+                <h5>{{ $item->name }} </h5>
                 <ul class="nav-footer">
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
+                    @foreach ( $item->products as $key => $pros)
+                    @if ($key > 3)
+                        @break      
+                    @endif                                  
+                    <li class="nav-item"><a class="nav-link" href="#">{{ $pros->name }}</a></li>
+                   @endforeach
                 </ul>
             </div>
-            <div class="col-sm-6 col-md-3 pt-2">
-                <h5>Men's</h5>
-                <ul class="nav-footer">
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 pt-2">
-                <h5>Girl's</h5>
-                <ul class="nav-footer">
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 pt-2">
-                <h5>Boy's</h5>
-                <ul class="nav-footer">
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Item</a></li>
-                </ul>
-            </div>
+         @endforeach
         </div>
     </div>
 
@@ -60,7 +33,7 @@
                     <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
                     <li><a href="#" title="Google+"><i class="fab fa-google"></i></a></li>
                     <li><a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
-                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.instagram.com/my_teiv/" title="Instagram"><i class="fab fa-instagram"></i></a></li>
                     <div class="clear"></div>
                 </ul>
             </div>

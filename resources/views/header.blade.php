@@ -1,7 +1,7 @@
  <section class="header text-center">
      <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
          <div class="container"><a class="navbar-brand" href="{{ route('home') }}"><i
-                     class="fas fa-shopping-bag primary-color mr-1"></i> SHOPPEE</a>
+                     class="fas fa-shopping-bag primary-color mr-1"></i> BANGSHOP</a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-1"
                  aria-controls="navbar-1" aria-expanded="false" aria-label="Toggle navigation"><span
                      class="navbar-toggler-icon"></span></button>
@@ -66,10 +66,10 @@
                              <a class="dropdown-item" href="item.html">Item Detail</a>
                              <a class="dropdown-item" href="cart.html">Cart</a>
                              <div class="dropdown-divider"></div>
-                             <a class="dropdown-item" href="contact.html">Contact</a>
+                             <a class="dropdown-item" href="contact.html">Liên hệ</a>
                          </div>
                      </li>
-                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                     <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
                      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                              id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                              aria-expanded="false"><i class="fas fa-shopping-cart"></i> <span

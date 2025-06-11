@@ -34,10 +34,11 @@ class BrandResource extends Resource
                     ->maxLength(255),
 
                 FileUpload::make('image')
-                    ->label('Image')
-                    ->image()
-                    ->visibility('public') // nếu có phân quyền
-                    ->required(),
+                 ->label('Ảnh danh mục')
+                 ->image()
+                ->directory('brand')
+                ->visibility('public')
+                 ->required(),
 
                 Textarea::make('description')
                     ->label('Description')
@@ -63,7 +64,9 @@ class BrandResource extends Resource
                ImageColumn::make('image')
                     ->label('Image')
                     ->disk('public')    
-                    ->visibility('public'), 
+                    ->visibility('public')
+                   
+                     , 
 
 
                 TextColumn::make('description')

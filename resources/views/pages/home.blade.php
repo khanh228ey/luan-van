@@ -24,7 +24,7 @@
                 <div class="container slide-textonly">
                     <div>
                         <h1>York &amp; Smith</h1>
-                        <p class="lead">Spring/Summer 2018 Collection</p>
+                        <p class="lead">Spring/Summer 2025 Collection</p>
                         <a href="#" class="btn btn-outline-secondary">View Collection</a>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="container slide-withimage">
                     <div class="description">
                         <h1>York &amp; Smith</h1>
-                        <p class="lead">Spring/Summer 2018 Collection</p>
+                        <p class="lead">Ưu đãi cực lớn cho mọi đơn hàng</p>
                         <a href="#" class="btn btn-outline-secondary">View Collection</a>
                     </div>
                     <div class="slide-image">
@@ -49,7 +49,7 @@
                 <div class="container slide-textonly">
                     <div>
                         <h1>York &amp; Smith</h1>
-                        <p class="lead">Spring/Summer 2018 Collection</p>
+                        <p class="lead">Thời trang đỉnh cao, giá cực mềm</p>
                         <a href="#" class="btn btn-outline-secondary">View Collection</a>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                 <div class="collection col-md-6 alt-background">
                     <div class="container container-right text-center">
                         <div>
-                            <h1>Women's</h1>
-                            <p class="lead">Spring/Summer 2018 Collection</p>
+                            <h1>T-shirt</h1>
+                            <p class="lead">Spring/Summer 2025 Collection</p>
                             <a href="catalog.html" class="btn btn-outline-secondary">Browse Women's</a>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
                 <div class="collection col-md-6 bg-secondary inverted">
                     <div class="container container-left text-center">
                         <div>
-                            <h1>Men's</h1>
-                            <p class="lead">Spring/Summer 2018 Collection</p>
+                            <h1>Polo-shirt</h1>
+                            <p class="lead">Spring/Summer 2025 Collection</p>
                             <a href="catalog.html" class="btn btn-outline-white">Browse Men's</a>
                         </div>
                     </div>
@@ -87,11 +87,9 @@
                     <img class="mt-4 mb-4 img-fluid" src="images/placeholder-jacket.png" style="width: 100%;">
                 </div>
                 <div class="col-md-6 text-center text-md-left">
-                    <h2 class="mb-3">Spring/Summer Collection 2018</h2>
-                    <p class="lead mt-2 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus
-                        erat sed sem sagittis cursus.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Suspendisse cursus erat
-                        sed sem sagittis cursus. Etiam porta sem malesuada magna mollis euismod.</p>
+                    <h2 class="mb-3">Spring/Summer Collection 2025</h2>
+                    <p class="lead mt-2 mb-3">Khám phá phong cách mùa xuân hè tươi mới đầy cuốn hút.</p>
+                    <p>Bộ sưu tập 2025 mang đến thiết kế tinh tế, gam màu rực rỡ, tôn vinh vẻ đẹp năng động mùa hè.</p>
                     <a href="#" class="btn btn-md btn-outline-primary mt-3">Shop Now</a>
                 </div>
             </div>
@@ -126,7 +124,7 @@
 
     <section class="cta text-center">
         <div class="container">
-            <h3 class="mt-0 mb-4">Sign up now to save 10% on your first order</h3>
+            <h3 class="mt-0 mb-4">Đăng ký ngay để nhận giảm 10% cho đơn hàng đầu tiên.</h3>
             <form class="subscribe">
                 <div class="form-group row pt-3">
                     <div class="col-sm-8 mb-3">
