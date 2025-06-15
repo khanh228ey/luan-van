@@ -27,7 +27,6 @@ class HomeController extends Controller
         $product = Product::with('brand')
             ->orderBy('created_at', 'desc')
             ->first(); 
-         Toastr::error('Có lỗi xảy ra!');
         return view('pages.home', compact('products', 'brand1', 'brand2', 'product'));
 
     }
