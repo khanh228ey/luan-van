@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -12,3 +13,9 @@ Route::get('/san-pham/{id}', [ProductController::class, 'productDetail'])->name(
 Route::Get('/danh-sach-san-pham', [ProductController::class, 'listProduct'])->name('product.list');
 
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact.index');
+
+// dang nhap
+Route::get('/dang-nhap', [AuthController::class, 'index'])->name('page.login');
+Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('auth.logout');
+Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
