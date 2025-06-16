@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-6 mt-5 mt-md-2 text-center text-md-left">
                     <h2 class="mb-3 mt-0">{{$product->name}}</h2>
-                    <p class="lead mt-2 mb-3 primary-color">{{$product->price}} Đ</p>
+                    <p class="lead mt-2 mb-3 primary-color">{{ number_format($product->price, 0, ',', '.') }}₫</p>
                     <h5 class="mt-4">Description</h5>
                     <p>{{$product->description}}</p>
                     <select class="custom-select form-control mt-4 mb-4">

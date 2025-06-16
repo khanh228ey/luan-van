@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\category;
 use App\Models\Product;
 use Flasher\Toastr\Laravel\Facade\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,7 @@ class HomeController extends Controller
             ->first();
         $product = Product::with('brand')
             ->orderBy('created_at', 'desc')
-            ->first(); 
+            ->first();
         return view('pages.home', compact('products', 'brand1', 'brand2', 'product'));
 
     }

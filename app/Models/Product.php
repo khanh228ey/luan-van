@@ -18,7 +18,7 @@ class Product extends Model
         'created_at',
         'updated_at',
     ];
-  
+
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
@@ -31,23 +31,24 @@ class Product extends Model
 
     {
         return $this->belongsToMany(Cart::class, 'cart_product', 'product_id', 'cart_id')
-                    ->withPivot('quantity')
-                    ->withTimestamps();
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
     public function orders()
 
     {
         return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id')
-                    ->withPivot('quantity' )
-                    ->withTimestamps();
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
     public function product_images()
-{
-    return $this->hasOne(ProductImage::class, 'product_id');
-}
+    {
+        return $this->hasOne(ProductImage::class, 'product_id');
+    }
 
     public function product_details()
     {
         return $this->hasMany(ProductDetail::class, 'product_id');
     }
+    
 }

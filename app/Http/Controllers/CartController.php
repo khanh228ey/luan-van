@@ -10,7 +10,14 @@ class CartController extends Controller
 
     public function addCart(Request $request)
     {
-        // Logic to add item to cart
-        return response()->json(['message' => 'Item added to cart successfully']);
+        $data = $request->all();
+        //no seesion
+        
+
+    }
+
+    public function viewCart()
+    {
+        return view('pages.cart');
     }
 }

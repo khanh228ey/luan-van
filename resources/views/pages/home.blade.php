@@ -84,7 +84,7 @@
         <div class="container">
             <div class="row justify-center">
                 <div class="col-md-6 text-center">
-                    <img class="mt-4 mb-4 img-fluid" src="{{ asset('storage/'.$product->image) }}" style="width: 100%;">
+                    <img class="mt-4 mb-4 img-fluid" src="{{ asset('storage/'.$product->product_images->image1) }}" style="width: 100%;">
                 </div>
                 <div class="col-md-6 text-center text-md-left">
                     <h2 class="mb-3">{{$product->brand->name}} Bộ Sưu tập 2025</h2>
@@ -104,16 +104,16 @@
                 @foreach ($products as $item )
                 <div class="col-sm-6 col-md-3 col-product">
                     <figure>
-                        <img class="rounded-corners img-fluid" src="{{asset('storage/'.$item->image)}}" width="240"
+                        <img class="rounded-corners img-fluid" src="{{asset('storage/'.$item->product_images->image1)}}" width="240"
                             height="240">
                         <figcaption>
-                            <div class="thumb-overlay"><a href="item.html" title="More Info">
+                            <div class="thumb-overlay"><a href="{{ route('product.detail', $item->id) }}" title="More Info">
                                     <i class="fas fa-search-plus"></i>
                                 </a></div>
                         </figcaption>
                     </figure>
                     <h4><a href="{{ route('product.detail', $item->id) }}">{{ $item->name }}</a></h4>
-                    <p><span class="emphasis">{{ $item->price }} Đ</span></p>
+                    <p><span class="emphasis">{{ number_format($item->price, 0, ',', '.') }}₫</span></p>
                 </div>
                 @endforeach
             </div>

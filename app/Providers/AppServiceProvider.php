@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use App\Models\category;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,5 +29,13 @@ class AppServiceProvider extends ServiceProvider
             ->limit(4)
             ->get();
         view()->share('category', $category);
+        View::composer('*', function ($view) {
+            if (Auth::check()) {
+                $cartUser = Cart::where('user_id', Auth::id())
+                    ->with('product')
+                    ->get();
+                $view->with('cartUser', $cartUser);
+            }
+        });
     }
 }

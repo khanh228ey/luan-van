@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -14,6 +15,9 @@ Route::Get('/danh-sach-san-pham', [ProductController::class, 'listProduct'])->na
 
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact.index');
 
+
+//gio hang
+Route::get('/gio-hang', [CartController::class, 'viewCart'])->name('cart.view');
 // dang nhap
 Route::get('/dang-nhap', [AuthController::class, 'index'])->name('page.login');
 Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
