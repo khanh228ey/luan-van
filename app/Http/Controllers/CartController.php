@@ -49,4 +49,29 @@ class CartController extends Controller
     {
         return view('pages.cart');
     }
+
+    public function deleteCart(Request $request)
+    {
+        $userId = Auth::id(); // Lấy ID người dùng đã đăng nhập
+
+        if (!$userId) {
+            return response()->json(['message' => 'Bạn cần đăng nhập trước.'], 401);
+        }
+
+        $cartItemId = $request->input('cart_item_id');
+
+        if (!$cartItemId) {
+            return response()->json(['message' => 'Thiếu cart_item_id.'], 400);
+        }
+
+        $cartItem = Cart::where('user_id', $userId)->where('id', $cartItemId)->first();
+
+        if (!$cartItem) {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
+        }
+
+        $cartItem->delete();
+
+        return redirect()->route('cart.view')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
+    }
 }

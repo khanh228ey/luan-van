@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
             if (Auth::check()) {
                 $cartUser = Cart::where('user_id', Auth::id())
                     ->with('product')
+                    ->limit(5)
                     ->get();
                 $view->with('cartUser', $cartUser);
             }

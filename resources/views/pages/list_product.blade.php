@@ -80,7 +80,7 @@
                                 <div class="col-md-6 col-lg-4 col-product">
                                     <figure>
                                         <img class="rounded-corners img-fluid"
-                                            src="{{ asset('storage/' . $product->image) }}">
+                                            src="{{ asset('storage/' . $product->product_images->image1) }}">
                                         <figcaption>
                                             <div class="thumb-overlay"><a href="{{ route('product.detail', $product->id) }}"
                                                     title="More Info">
@@ -127,14 +127,14 @@
 
     <section class="cta text-center">
         <div class="container">
-            <h3 class="mt-0 mb-4">Sign up now to save 10% on your first order</h3>
+            <h3 class="mt-0 mb-4">Liên hệ với chúng tôi</h3>
             <form class="subscribe">
                 <div class="form-group row pt-3">
                     <div class="col-sm-8 mb-3">
                         <input type="text" class="form-control" id="inputName" placeholder="Your Name">
                     </div>
                     <div class="col-sm-4">
-                        <button type="submit" class="btn btn-lg btn-outline-primary">Sign me up</button>
+                        <button type="submit" class="btn btn-lg btn-outline-primary">Gửi email</button>
                     </div>
                 </div>
             </form>

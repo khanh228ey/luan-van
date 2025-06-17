@@ -64,7 +64,7 @@
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                 class="fas fa-shopping-cart"></i> <span
-                                class="badge badge-pill badge-primary">0</span></a>
+                                class="badge badge-pill badge-primary">{{ $cartUser->count() }}</span></a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-cart" aria-labelledby="navbarDropdown">
                             @if (Auth::check())
                                 <h6>Tổng {{ $cartUser->count() }} sản phẩm<span class="emphasis"></span></h6>

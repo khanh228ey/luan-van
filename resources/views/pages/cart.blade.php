@@ -42,8 +42,9 @@
                                     </td>
                                     <td class="actions" data-th="">
                                         <div class="text-right">
-                                            <form action="" method="POST" style="display:inline;">
+                                            <form action="{{ route('cart.delete') }}" method="POST" style="display:inline;">
                                                 @csrf
+                                                <input type="hidden" name="cart_item_id" value="{{ $item->id }}">
                                                 <button type="submit" class="btn btn-white btn-md mb-2"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </div>
