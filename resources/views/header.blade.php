@@ -112,13 +112,13 @@
                             </div>
                         </li>
                     @else
-                        <li class="nav-item dropdown">
+                       <a href="{{ route('page.login') }}"> <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="{{ route('page.login') }}"
                                 id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 Đăng nhập
                             </a>
-                        </li>
+                        </li></a>
                     @endif
                 </ul>
             </div>

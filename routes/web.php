@@ -18,6 +18,7 @@ Route::get('/lien-he', [ContactController::class, 'index'])->name('contact.index
 
 //gio hang
 Route::get('/gio-hang', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/gio-hang/them', [CartController::class, 'addCart'])->name('cart.add');
 // dang nhap
 Route::get('/dang-nhap', [AuthController::class, 'index'])->name('page.login');
 Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');

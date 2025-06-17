@@ -17,4 +17,19 @@ class ProductDetail extends Model
         'prince_sales',
         'quantity',
         'image',];
+
+        public function product()
+        {
+            return $this->belongsTo(Product::class, 'product_id');
+        }
+        public function carts()
+        {
+            return $this->hasMany(Cart::class, 'product_detail_id');
+        }
+
+        public function orders()
+        {
+            return $this->hasMany(Order::class, 'product_detail_id');
+        }
+        
 }
