@@ -15,7 +15,8 @@ Route::Get('/danh-sach-san-pham', [ProductController::class, 'listProduct'])->na
 
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact.index');
 
-
+Route::get('thuong-hieu/{brandId}', [ProductController::class, 'listProductByBrand'])->name('product.brand');
+Route::get('danh-muc/{categoryId}', [ProductController::class, 'listProductByCategory'])->name('product.category');
 //gio hang
 Route::get('/gio-hang', [CartController::class, 'viewCart'])->name('cart.view');
 Route::post('/gio-hang/them', [CartController::class, 'addCart'])->name('cart.add');
@@ -25,3 +26,5 @@ Route::get('/dang-nhap', [AuthController::class, 'index'])->name('page.login');
 Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
+
+Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');

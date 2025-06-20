@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-lg-3 sidebar-filter">
-                <h3 class="mt-5 mb-5">Xem <span class="primary-color">{{$products->count()}}</span> sản phẩm</h3>
+                <h3 class="mt-5 mb-5">Tìm thấy <span class="primary-color">{{$products->count()}}</span> sản phẩm với từ khóa <span class="primary-color">{{$search}}</span></h3>
                 <h6 class="text-uppercase">Danh mục</h6>
                 @foreach ($categories as $cate)
                     <a href="{{ route('product.category', ['categoryId' => $cate->id]) }}" class="d-block py-1 px-2 mb-1 rounded filter-link text-dark" style="transition: background 0.2s;">
@@ -78,7 +78,7 @@
                         <div class="row">
                             @if($products->count() == 0)
                                 <div class="col-12 text-center">
-                                    <p>Không có sản phẩm nào.</p>
+                                    <p>Không tìm thấy sản phẩm liên quan.</p>
                                 </div>
                             @endif
                             @foreach ($products as $product)

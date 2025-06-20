@@ -61,26 +61,38 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('product.list') }}">Danh sách sản phẩm</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Liên hệ</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                class="fas fa-shopping-cart"></i> <span
-                                class="badge badge-pill badge-primary">{{ $cartUser->count() }}</span></a>
+                    <li class="nav-item dropdown">
+                        @if (Auth::check())
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-shopping-cart"></i> <span
+                                    class="badge badge-pill badge-primary">{{ $cartUser->count() }}?></span></a>
+                        @else
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-shopping-cart"></i> <span
+                                    class="badge badge-pill badge-primary">0</span></a>
+                        @endif
                         <div class="dropdown-menu dropdown-menu-right dropdown-cart" aria-labelledby="navbarDropdown">
                             @if (Auth::check())
                                 <h6>Tổng {{ $cartUser->count() }} sản phẩm<span class="emphasis"></span></h6>
                                 <div class="dropdown-divider"></div>
                                 <ul class="shopping-cart-items">
                                     @foreach ($cartUser as $item)
-                                    <li class="row">
-                                        <div class="col-3">
-                                            <img src="{{ asset('storage/' . $item->product->product_images->image1) }}" width="60">
-                                        </div>
-                                        <div class="col-9">
-                                            <h6><a href="{{ route('product.detail', $item->product->id) }}">{{ $item->product->name }}</a></h6>
-                                            <span class="text-muted">SL: {{ $item->quantity }}-</span>
-                                            <span class="emphasis">{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}₫</span>
-                                        </div>
-                                    </li>
+                                        <li class="row">
+                                            <div class="col-3">
+                                                <img src="{{ asset('storage/' . $item->product->product_images->image1) }}"
+                                                    width="60">
+                                            </div>
+                                            <div class="col-9">
+                                                <h6><a
+                                                        href="{{ route('product.detail', $item->product->id) }}">{{ $item->product->name }}</a>
+                                                </h6>
+                                                <span class="text-muted">SL: {{ $item->quantity }}-</span>
+                                                <span
+                                                    class="emphasis">{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}₫</span>
+                                            </div>
+                                        </li>
                                     @endforeach
                                 </ul>
                                 <a href="{{ route('cart.view') }}" class="btn btn-lg btn-full-width btn-primary"
@@ -112,16 +124,50 @@
                             </div>
                         </li>
                     @else
-                       <a href="{{ route('page.login') }}"> <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{ route('page.login') }}"
-                                id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                Đăng nhập
-                            </a>
-                        </li></a>
+                        <a href="{{ route('page.login') }}">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ route('page.login') }}"
+                                    id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Đăng nhập
+                                </a>
+                            </li>
+                        </a>
                     @endif
+                    <!-- Search Button -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#searchModal">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 </section>
+
+<!-- Search Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">Tìm kiếm sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('search') }}" method="GET">
+          <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Nhập tên sản phẩm..." autofocus>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -33,4 +33,26 @@ class HomeController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $brands = Brand::limit(6)->get();
+        $categories = category::limit(6)->get();
+        $products = Product::where('name', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->orWhereHas('category', function($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('brand', function($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+            ->get();
+
+        // if ($products->isEmpty()) {
+        //     Toastr::error('No products found for your search query.');
+        // }
+
+        return view('pages.search', compact('products', 'brands', 'categories', 'search'));
+    }
+
 }

@@ -17,6 +17,14 @@
     @include('header')
     @yield('content')
     @include('footer')
+    <script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script>
+        $('#searchModal').on('shown.bs.modal', function() {
+            $(this).find('input[name=\'q\']').trigger('focus');
+        });
+    </script>
 </body>
+
 
 </html>
