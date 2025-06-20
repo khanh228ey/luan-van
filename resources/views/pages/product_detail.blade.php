@@ -99,17 +99,6 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const mainImg = document.getElementById('mainProductImage');
-    const thumbs = document.querySelectorAll('.thumb-img');
-    thumbs.forEach(function(thumb) {
-        thumb.addEventListener('click', function(e) {
-            e.preventDefault();
-            let temp = mainImg.src;
-            mainImg.src = thumb.src;
-            thumb.src = temp;
-        });
-    });
-});
+
 </script>
 @endpush

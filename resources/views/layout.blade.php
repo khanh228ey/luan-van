@@ -19,9 +19,32 @@
     @include('footer')
     <script src="{{ asset('assets/js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <style>
+        #mainProductImage.fade-img {
+            transition: opacity 0.3s;
+            opacity: 0.3;
+        }
+    </style>
     <script>
         $('#searchModal').on('shown.bs.modal', function() {
             $(this).find('input[name=\'q\']').trigger('focus');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImg = document.getElementById('mainProductImage');
+            const thumbs = document.querySelectorAll('.thumb-img');
+            thumbs.forEach(function(thumb) {
+                thumb.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    mainImg.classList.add('fade-img');
+                    setTimeout(function() {
+                        let temp = mainImg.src;
+                        mainImg.src = thumb.src;
+                        thumb.src = temp;
+                        mainImg.classList.remove('fade-img');
+                    }, 200);
+                });
+            });
         });
     </script>
 </body>
