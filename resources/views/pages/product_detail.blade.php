@@ -5,16 +5,17 @@
             <div class="row">
                 <div class="col-md-6 text-center">
                     <div class="product-image mt-3">
-                        <img class="img-fluid" src="{{ asset('storage/' . $product->product_images->image1) }}">
+                        <img id="mainProductImage" class="img-fluid" src="{{ asset('storage/' . $product->product_images->image1) }}">
                     </div>
-                    <div class="product-thumbnails"><a href="#">
-                            <img class="mt-2 mr-2 img-fluid"
+                    <div class="product-thumbnails">
+                        <a href="#">
+                            <img class="mt-2 mr-2 img-fluid thumb-img"
                                 src="{{ asset('storage/' . $product->product_images->image2) }}"></a>
                         <a href="#">
-                            <img class="mt-2 mr-2 img-fluid"
+                            <img class="mt-2 mr-2 img-fluid thumb-img"
                                 src="{{ asset('storage/' . $product->product_images->image3) }}"></a>
                         <a href="#">
-                            <img class="mt-2 mr-2 img-fluid"
+                            <img class="mt-2 mr-2 img-fluid thumb-img"
                                 src="{{ asset('storage/' . $product->product_images->image4) }}"></a>
                     </div>
                 </div>
@@ -95,3 +96,20 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mainImg = document.getElementById('mainProductImage');
+    const thumbs = document.querySelectorAll('.thumb-img');
+    thumbs.forEach(function(thumb) {
+        thumb.addEventListener('click', function(e) {
+            e.preventDefault();
+            let temp = mainImg.src;
+            mainImg.src = thumb.src;
+            thumb.src = temp;
+        });
+    });
+});
+</script>
+@endpush
