@@ -60,7 +60,7 @@
                 @foreach ($relatedProducts as $item)
                     <div class="col-sm-6 col-md-3 col-product">
                         <figure>
-                            <img class="rounded-corners img-fluid" src="{{ asset('storage/' . $item->image) }}"
+                            <img class="rounded-corners img-fluid" src="{{ asset('storage/' . $item->product_images->image1) }}"
                                 width="240" height="240">
                             <figcaption>
                                 <div class="thumb-overlay"><a href="{{ route('product.detail', $item->id) }}"

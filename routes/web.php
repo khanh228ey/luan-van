@@ -26,5 +26,12 @@ Route::get('/dang-nhap', [AuthController::class, 'index'])->name('page.login');
 Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
-
+Route::get('thong-tin-ca-nhan', [AuthController::class, 'profile'])->name('auth.profile');
+Route::post('thong-tin-ca-nhan/cap-nhat', [AuthController::class, 'updateProfile'])->name('profile.update');
+//tim kiem
 Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
+
+
+Route::post('/thanh-toan', [CartController::class, 'pageCheckout'])->name('checkout.page');
+
+Route::post('cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');

@@ -64,4 +64,38 @@ class AuthController extends Controller
         $user->save();
         return redirect()->route('page.login')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
     }
+
+
+    public function profile(Request $request)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('page.login');
+        }
+        return view('pages.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('page.login');
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'required|string|max:15|unique:users,phone,' . $user->id,
+        ]);
+        
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->updated_at = now();
+        $user->save();
+
+        Flasher::success('Cập nhật thông tin thành công!');
+
+        return redirect()->route('auth.profile');
+    }
 }

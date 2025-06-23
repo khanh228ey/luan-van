@@ -26,10 +26,14 @@
         }
     </style>
     <script>
+        // Hiển thị modal tìm kiếm khi nhấn nút tìm kiếm
         $('#searchModal').on('shown.bs.modal', function() {
             $(this).find('input[name=\'q\']').trigger('focus');
         });
 
+
+
+        //chuyển đổi ảnh sản phẩm
         document.addEventListener('DOMContentLoaded', function() {
             const mainImg = document.getElementById('mainProductImage');
             const thumbs = document.querySelectorAll('.thumb-img');
@@ -47,7 +51,7 @@
             });
         });
     </script>
+    @stack('sripts')
 </body>
-
 
 </html>

@@ -1,7 +1,7 @@
 <section class="header text-center">
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
         <div class="container"><a class="navbar-brand" href="{{ route('home') }}"><i
-                    class="fas fa-shopping-bag primary-color mr-1"></i> BANGSHOP</a>
+                    class="fas fa-shopping-bag primary-color mr-1"></i>BANGSHOP</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-1"
                 aria-controls="navbar-1" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
@@ -66,7 +66,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-shopping-cart"></i> <span
-                                    class="badge badge-pill badge-primary">{{ $cartUser->count() }}?></span></a>
+                                    class="badge badge-pill badge-primary">{{ $cartUser->count() }}</span></a>
                         @else
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i

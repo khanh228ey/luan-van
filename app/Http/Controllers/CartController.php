@@ -74,4 +74,50 @@ class CartController extends Controller
 
         return redirect()->route('cart.view')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
     }
+    public function updateQuantity(Request $request, $id)
+    {
+        $userId = Auth::id();
+        $quantity = $request->input('quantity');
+        if (!$userId) {
+            return response()->json(['success' => false, 'message' => 'Bạn cần đăng nhập trước.'], 401);
+        }
+        $cartItem = \App\Models\Cart::where('user_id', $userId)->where('id', $id)->first();
+        if (!$cartItem) {
+            return response()->json(['success' => false, 'message' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
+        }
+        if ($quantity < 1) {
+            return response()->json(['success' => false, 'message' => 'Số lượng tối thiểu là 1.'], 400);
+        }
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
+        return response()->json(['success' => true, 'message' => 'Cập nhật số lượng thành công.']);
+    }
+
+
+    public function pageCheckout(Request $request)
+    {
+        $userId = Auth::id();
+        $cartItemIds = $request->input('cart_item_ids', []);
+
+        // Nếu không chọn sản phẩm nào thì chuyển về giỏ hàng
+        if (!$cartItemIds || !is_array($cartItemIds) || count($cartItemIds) == 0) {
+            return redirect()->route('cart.view')->with('error', 'Vui lòng chọn sản phẩm để thanh toán.');
+        }
+
+        // Lấy các sản phẩm đã chọn của user
+        $cartItems = \App\Models\Cart::with(['product', 'product.product_images', 'product.brand'])
+            ->where('user_id', $userId)
+            ->whereIn('id', $cartItemIds)
+            ->get();
+
+        // Tính tổng tiền
+        $total = $cartItems->sum(function($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        return view('pages.checkout', [
+            'cartItems' => $cartItems,
+            'total' => $total,
+        ]);
+    }
 }
