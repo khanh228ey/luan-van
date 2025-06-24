@@ -32,6 +32,7 @@ Route::post('thong-tin-ca-nhan/cap-nhat', [AuthController::class, 'updateProfile
 Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
 
 
-Route::post('/thanh-toan', [CartController::class, 'pageCheckout'])->name('checkout.page');
+Route::post('/dat-hang', [CartController::class, 'pageCheckout'])->name('checkout.page');
 
 Route::post('cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
+Route::post('/order/add', [\App\Http\Controllers\OrderController::class, 'addOrder'])->name('order.add');

@@ -11,13 +11,15 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'total_price',
         'status',
         'payment_method',
         'payment_status',
-        'created_at',
-        'updated_at',
         'total',
+        'province',
+        'district', // sửa đúng là 'district', không phải 'distrist'
+        'ward',
+        'detail',
+        'note',
     ];
     public function user()
     {
