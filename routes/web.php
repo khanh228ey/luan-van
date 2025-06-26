@@ -36,7 +36,7 @@ Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
 Route::post('/dat-hang', [CartController::class, 'pageCheckout'])->name('checkout.page');
 
 Route::post('cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
-
+Route::post('/order/add', [\App\Http\Controllers\OrderController::class, 'addOrder'])->name('order.add');
 
 
 //order
