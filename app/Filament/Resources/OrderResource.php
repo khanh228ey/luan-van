@@ -45,26 +45,27 @@ class OrderResource extends Resource
                         ->label('Trạng thái đơn hàng')
                         ->required()
                         ->options([
-                            'pending' => 'Chờ xác nhận',
-                            'confirmed' => 'Đã xác nhận',
-                            'shipping' => 'Đang giao hàng',
-                            'delivered' => 'Đã giao hàng',
+                            0 => 'Đang chờ',
+                            1 => 'Đã duyệt',
+                            2 => 'Đang giao',
+                            3 => 'Đã giao hàng',
+                            4 => 'Đã huỷ',
                         ]),
 
                     Select::make('payment_method')
                         ->label('Phương thức thanh toán')
                         ->required()
                         ->options([
-                            'online' => 'Thanh toán online',
-                            'cod' => 'Thanh toán khi nhận hàng',
+                            0 => 'Thanh toán khi nhận hàng',
+                            1 => 'Thanh toán online',
                         ]),
 
                     Select::make('payment_status')
                         ->label('Tình trạng thanh toán')
                         ->required()
                         ->options([
-                            'paid' => 'Đã thanh toán',
-                            'unpaid' => 'Chưa thanh toán',
+                            0 => 'Chưa thanh toán',
+                            1 => 'Đã thanh toán',
                         ]),
                 ]),
 
@@ -124,7 +125,45 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('id')
+                    ->label('Mã đơn hàng')
+                    ->sortable(),
+                TextColumn::make('user.name')
+                    ->label('Người đặt hàng')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('total')
+                    ->label('Tổng tiền')
+                    ->money('VND', true)
+                    ->sortable(),
+                TextColumn::make('status')
+                    ->label('Trạng thái')
+                    ->badge()
+                    ->formatStateUsing(function ($state) {
+                        $statusArr = [
+                            0 => ['label' => 'Đang chờ', 'style' => 'background:#2563eb;color:#fff;'],      // blue-700
+                            1 => ['label' => 'Đã duyệt', 'style' => 'background:#6d28d9;color:#fff;'],      // purple-700
+                            2 => ['label' => 'Đang giao', 'style' => 'background:#ea580c;color:#fff;'],     // orange-600
+                            3 => ['label' => 'Đã giao hàng', 'style' => 'background:#15803d;color:#fff;'],  // green-700
+                            4 => ['label' => 'Đã huỷ', 'style' => 'background:#b91c1c;color:#fff;'],        // red-700
+                        ];
+                        $status = $statusArr[$state] ?? $statusArr[0];
+                        return "<span class='badge' style='{$status['style']}'>{$status['label']}</span>";
+                    })
+                    ->html()
+                    ->sortable(),
+                TextColumn::make('payment_method')
+                    ->label('Phương thức thanh toán')
+                    ->formatStateUsing(fn($state) => $state == 0 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online')
+                    ->sortable(),
+                TextColumn::make('payment_status')
+                    ->label('Tình trạng thanh toán')
+                    ->formatStateUsing(fn($state) => $state == 0 ? 'Chưa thanh toán' : 'Đã thanh toán')
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->label('Ngày tạo')
+                    ->dateTime('d/m/Y H:i')
+                    ->sortable(),
             ])
             ->filters([
                 //
