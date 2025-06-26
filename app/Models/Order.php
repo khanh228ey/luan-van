@@ -16,7 +16,7 @@ class Order extends Model
         'payment_status',
         'total',
         'province',
-        'district', // sửa đúng là 'district', không phải 'distrist'
+        'district',
         'ward',
         'detail',
         'note',
@@ -26,21 +26,24 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     public function products()
-
     {
-        return $this->belongsToMany(ProductDetail::class, 'order_product', 'order_id', 'product_detail_id')
-                    ->withPivot('quantity')
-                    ->withTimestamps();
+        // Quan hệ nhiều-nhiều qua bảng order_items, lấy thêm các trường phụ như size, quantity, price
+        return $this->belongsToMany(
+            ProductDetail::class,
+            'order_item',
+            'order_id',
+            'product_detail_id'
+        )->withPivot( 'quantity');
     }
     public function orderItems()
-{
-    return $this->hasMany(OrderItem::class);
-}
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
+    }
 
-public function getTotalAttribute()
-{
-    return $this->orderItems->sum(function ($item) {
-        return $item->productDetail->price_sales * $item->quantity;
-    });
-}
+    // public function getTotalAttribute()
+    // {
+    //     return $this->orderItems->sum(function ($item) {
+    //         return $item->productDetail->price_sales * $item->quantity;
+    //     });
+    // }
 }

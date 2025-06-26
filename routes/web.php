@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,4 +36,8 @@ Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
 Route::post('/dat-hang', [CartController::class, 'pageCheckout'])->name('checkout.page');
 
 Route::post('cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
-Route::post('/order/add', [\App\Http\Controllers\OrderController::class, 'addOrder'])->name('order.add');
+
+
+
+//order
+Route::get('/don-hang', [OrderController::class, 'listOrder'])->name('order.view');

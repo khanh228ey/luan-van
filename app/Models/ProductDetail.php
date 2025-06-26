@@ -31,5 +31,13 @@ class ProductDetail extends Model
         {
             return $this->hasMany(Order::class, 'product_detail_id');
         }
+        public function product_images()
+        {
+            // Nếu ProductImage có product_id, ProductDetail cũng có product_id,
+            // thì quan hệ này sẽ trả về ảnh của sản phẩm cha, không phải riêng cho từng ProductDetail.
+            // Nếu muốn lấy ảnh theo từng ProductDetail, ProductImage nên có product_detail_id.
+            // Nếu vẫn muốn lấy ảnh theo product_id, quan hệ này đúng, nhưng sẽ trả về ảnh chung cho sản phẩm.
+            return $this->hasOne(ProductImage::class, 'product_id', 'product_id');
+        }
         
 }

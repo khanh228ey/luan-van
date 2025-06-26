@@ -72,7 +72,8 @@ class AuthController extends Controller
         if (!$user) {
             return redirect()->route('page.login');
         }
-        return view('pages.profile', compact('user'));
+        $addresses = $user->address()->get(); // Giữ nguyên tên hàm address()
+        return view('pages.profile', compact('user', 'addresses'));
     }
 
     public function updateProfile(Request $request)
@@ -93,7 +94,6 @@ class AuthController extends Controller
         $user->phone = $request->input('phone');
         $user->updated_at = now();
         $user->save();
-
         Flasher::success('Cập nhật thông tin thành công!');
 
         return redirect()->route('auth.profile');

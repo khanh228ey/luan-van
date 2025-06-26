@@ -79,4 +79,22 @@ class OrderController extends Controller
             'order' => $order,
         ])->with('success', 'Đặt hàng thành công!');
     }
+
+
+    public function listOrder()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('page.login');
+        }
+
+        $orders = Order::with('products', 'orderItems')->where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(9);
+
+        return view('pages.order_list', [
+            'orders' => $orders,
+            'user' => $user,
+        ]);
+
+       
+    }
 }
