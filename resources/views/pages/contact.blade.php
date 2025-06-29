@@ -10,10 +10,8 @@
         <div class="container">
             <div class="row contact-details">
                 <div class="col-sm-8 text-center text-md-left">
-                    <h3 class="mb-4">Ask us a question</h3>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus venenatis velit
-                        vestibulum massa sollicitudin auctor. Cras ac venenatis orci. Ut consequat, purus ut ultrices
-                        ultricies, nisi sem ornare quam, sed ultricies mi nisl sit amet purus.</p>
+                    <h3 class="mb-4">Liên hệ với chúng tôi</h3>
+                    <p class="mb-4"> Nếu bạn có bất kỳ câu hỏi, góp ý hoặc cần hỗ trợ, vui lòng liên hệ với chúng tôi qua thông tin dưới đây hoặc gửi tin nhắn qua biểu mẫu.</p>
                     <form class="contact-form mt-4">
                         <div class="row">
                             <div class="col-md-5">
@@ -35,15 +33,14 @@
                     </form>
                 </div>
                 <div class="col-sm-4 mb-5 text-center text-md-left">
-                    <h3>Contact</h3>
+                    <h3>Liên hệ</h3>
                     <h4 class="pt-4">Email</h4>
-                    <p>hello@example.com</p>
+                    <p>vovietmy12@gmai.com</p>
                     <h4 class="pt-2">Phone</h4>
-                    <p>+111 234 567 89</p>
+                    <p>0384385265</p>
                     <h4 class="pt-2">Address</h4>
-                    <p>1 Street Name, City, Zip Code
-                        <br />United States
-                    </p>
+                    <p>164 trần thị nơi, phường 4, quận 8
+                        <br />Thành phố Hồ Chí Minh</p>
                     <ul class="social">
                         <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>

@@ -52,6 +52,13 @@
         });
     </script>
     @stack('sripts')
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="BangShop"
+  agent-id="9a7c4348-d833-4eea-a5ae-7ecded5b1c79"
+  language-code="en"
+></df-messenger>
 </body>
 
 </html>

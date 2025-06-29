@@ -41,3 +41,6 @@ Route::post('/order/add', [\App\Http\Controllers\OrderController::class, 'addOrd
 
 //order
 Route::get('/don-hang', [OrderController::class, 'listOrder'])->name('order.view');
+Route::get('/loc-gia', [ProductController::class, 'filterByPrice'])->name('product.filter.price');
+
+
