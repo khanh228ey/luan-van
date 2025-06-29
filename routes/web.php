@@ -40,6 +40,7 @@ Route::post('/dat-hang', [CartController::class, 'pageCheckout'])->name('checkou
 Route::post('cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
 Route::post('/order/add', [\App\Http\Controllers\OrderController::class, 'addOrder'])->name('order.add');
 
-
 //order
 Route::get('/don-hang', [OrderController::class, 'listOrder'])->name('order.view');
+Route::get('/loc-gia', [ProductController::class, 'filterByPrice'])->name('product.filter.price');
+Route::post('/don-hang/{id}/huy', [OrderController::class, 'cancerOrder'])->name('order.cancel');
