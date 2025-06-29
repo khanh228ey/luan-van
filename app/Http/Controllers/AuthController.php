@@ -87,15 +87,35 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'phone' => 'required|string|max:15|unique:users,phone,' . $user->id,
+            'detail' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
+            'district' => 'nullable|string|max:255',
+            'ward' => 'nullable|string|max:255',
         ]);
-        
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
         $user->updated_at = now();
         $user->save();
-        Flasher::success('Cập nhật thông tin thành công!');
+
+        // Cập nhật hoặc tạo mới địa chỉ (1-1)
+        $address = $user->address()->first();
+        if (!$address) {
+            $address = new \App\Models\Address();
+            $address->user_id = $user->id;
+        }
+        $address->detail = $request->input('detail');
+        $address->province = $request->input('province');
+        $address->district = $request->input('district');
+        $address->ward = $request->input('ward');
+        $address->updated_at = now();
+        if (!$address->exists) {
+            $address->created_at = now();
+        }
+        $address->save();
 
         return redirect()->route('auth.profile');
     }
 }
+// End of file: app/Http/Controllers/AuthController.php

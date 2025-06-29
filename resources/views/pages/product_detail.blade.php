@@ -70,7 +70,7 @@
                             </figcaption>
                         </figure>
                         <h4><a href="{{ route('product.detail', $item->id) }}">{{ $item->name }}</a></h4>
-                        <p><span class="emphasis">{{ $item->price }} Đ</span></p>
+                        <p><span class="emphasis">{{ number_format($item->price, 0, ',', '.') }} Đ</span></p>
                     </div>
                 @endforeach
 

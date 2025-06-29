@@ -64,7 +64,7 @@
                         <div>
                             <h1>{{$brand1->name}}</h1>
                             <p class="lead">Spring/Summer 2025 Collection</p>
-                            <a href="catalog.html" class="btn btn-outline-secondary">Browse Women's</a>
+                            <a href="{{ route('product.brand', ['brandId' => $brand1->id]) }}" class="btn btn-outline-secondary">Xem chi tiết</a>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         <div>
                             <h1>{{$brand2->name}}</h1>
                             <p class="lead">Spring/Summer 2025 Collection</p>
-                            <a href="catalog.html" class="btn btn-outline-white">Browse Men's</a>
+                            <a href="{{ route('product.brand', ['brandId' => $brand2->id]) }}" class="btn btn-outline-white">Xem chi tiết</a>
                         </div>
                     </div>
                 </div>

@@ -113,7 +113,7 @@
                                 <i class="fas fa-user"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="{{ route('auth.profile') }}">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="{{ route('order.view') }}">Đơn hàng của bạn</a>
                                 <form action="{{ route('auth.logout') }}" method="POST" style="margin: 0;">
                                     @csrf

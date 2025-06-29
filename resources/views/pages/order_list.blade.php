@@ -108,6 +108,12 @@
             @endif
           </div>
           <div class="modal-footer">
+            @if (in_array($item->status, [0, 1]))
+            <form method="POST" action="{{ route('order.cancel', $item->id) }}" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?');">
+                @csrf
+                <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+            </form>
+            @endif
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
           </div>
         </div>

@@ -97,4 +97,21 @@ class OrderController extends Controller
 
        
     }
+
+    public function cancerOrder(Request $request, $id)
+    {
+        $order = Order::find($id);
+        if (!$order) {
+            return redirect()->back()->with('error', 'Đơn hàng không tồn tại.');
+        }
+
+        if ($order->status != 0) {
+            return redirect()->back()->with('error', 'Chỉ có thể huỷ đơn hàng đang chờ xử lý.');
+        }
+
+        $order->status = 4; // Đặt trạng thái là đã huỷ
+        $order->save();
+
+        return redirect()->route('order.view')->with('success', 'Đơn hàng đã được huỷ thành công.');
+    }
 }
