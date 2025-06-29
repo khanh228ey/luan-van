@@ -22,6 +22,8 @@ Route::get('danh-muc/{categoryId}', [ProductController::class, 'listProductByCat
 Route::get('/gio-hang', [CartController::class, 'viewCart'])->name('cart.view');
 Route::post('/gio-hang/them', [CartController::class, 'addCart'])->name('cart.add');
 Route::post('/gio-hang/xoa', [CartController::class, 'deleteCart'])->name('cart.delete');
+// API xoá sản phẩm khỏi giỏ hàng (dùng cho AJAX)
+Route::post('/api/gio-hang/xoa', [CartController::class, 'deleteCart'])->name('cart.delete.api');
 // dang nhap
 Route::get('/dang-nhap', [AuthController::class, 'index'])->name('page.login');
 Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
@@ -41,3 +43,4 @@ Route::post('/order/add', [\App\Http\Controllers\OrderController::class, 'addOrd
 
 //order
 Route::get('/don-hang', [OrderController::class, 'listOrder'])->name('order.view');
+Route::post('/don-hang/{id}/huy', [OrderController::class, 'cancerOrder'])->name('order.cancel');

@@ -54,7 +54,7 @@
                                     <td class="actions" data-th="">
                                         <div class="text-right">
                                             <!-- Sử dụng method POST để xóa, không dùng DELETE -->
-                                            <form action="{{ route('cart.delete') }}" method="POST" class="delete-form" style="display:inline;">
+                                            <form action="{{ route('cart.delete') }}" method="POST" class="delete-form-ajax" style="display:inline;">
                                                 @csrf
                                                 <input type="hidden" name="cart_item_id" value="{{ $item->id }}">
                                                 <button type="button" class="btn btn-white btn-md mb-2 delete-btn">
@@ -167,21 +167,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Xử lý xác nhận xoá giỏ hàng (dùng AJAX với method POST)
+    // Tách xử lý xoá AJAX ra khỏi form thanh toán
     document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             if (confirm('Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?')) {
-                const realForm = this.closest('form');
-                const formData = new FormData(realForm);
-                fetch(realForm.action, {
+                const cartItemId = this.closest('form').querySelector('input[name="cart_item_id"]').value;
+                fetch('/api/gio-hang/xoa', {
                     method: 'POST',
                     headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN': formData.get('_token')
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'X-Requested-With': 'XMLHttpRequest'
                     },
-                    body: formData
+                    body: JSON.stringify({ cart_item_id: cartItemId })
                 })
                 .then(res => {
                     if (res.ok) {

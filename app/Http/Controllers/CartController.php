@@ -52,26 +52,39 @@ class CartController extends Controller
 
     public function deleteCart(Request $request)
     {
-        $userId = Auth::id(); // Lấy ID người dùng đã đăng nhập
+        $userId = Auth::id();
 
         if (!$userId) {
-            return response()->json(['message' => 'Bạn cần đăng nhập trước.'], 401);
+            // Nếu là API request, trả về JSON
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(['success' => false, 'message' => 'Bạn cần đăng nhập trước.'], 401);
+            }
+            return redirect()->route('page.login');
         }
 
         $cartItemId = $request->input('cart_item_id');
 
         if (!$cartItemId) {
-            return response()->json(['message' => 'Thiếu cart_item_id.'], 400);
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(['success' => false, 'message' => 'Thiếu cart_item_id.'], 400);
+            }
+            return redirect()->route('cart.view')->with('error', 'Thiếu cart_item_id.');
         }
 
         $cartItem = Cart::where('user_id', $userId)->where('id', $cartItemId)->first();
 
         if (!$cartItem) {
-            return response()->json(['message' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(['success' => false, 'message' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
+            }
+            return redirect()->route('cart.view')->with('error', 'Không tìm thấy sản phẩm trong giỏ hàng.');
         }
 
         $cartItem->delete();
 
+        if ($request->expectsJson() || $request->is('api/*')) {
+            return response()->json(['success' => true, 'message' => 'Sản phẩm đã được xóa khỏi giỏ hàng.']);
+        }
         return redirect()->route('cart.view')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
     }
     public function updateQuantity(Request $request, $id)
