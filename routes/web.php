@@ -11,7 +11,7 @@ use App\Http\Middleware\checkAuth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware([checkAuth::class])->group(function () {
+// Route::middleware([checkAuth::class])->group(function () {
     //gio hang
     Route::get('/gio-hang', [CartController::class, 'viewCart'])->name('cart.view');
     Route::post('/gio-hang/them', [CartController::class, 'addCart'])->name('cart.add');
@@ -19,16 +19,21 @@ Route::middleware([checkAuth::class])->group(function () {
     // API xoá sản phẩm khỏi giỏ hàng (dùng cho AJAX)
     Route::post('/api/gio-hang/xoa', [CartController::class, 'deleteCart'])->name('cart.delete.api');
 
+    //PROFILE
     Route::get('thong-tin-ca-nhan', [AuthController::class, 'profile'])->name('auth.profile');
     Route::post('thong-tin-ca-nhan/cap-nhat', [AuthController::class, 'updateProfile'])->name('profile.update');
 
+    //Order và thanh toán
     Route::post('/dat-hang', [CartController::class, 'pageCheckout'])->name('checkout.page');
     Route::post('cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
     Route::post('/order/add', [OrderController::class, 'addOrder'])->name('order.add');
     //order
     Route::get('/don-hang', [OrderController::class, 'listOrder'])->name('order.view');
     Route::post('/don-hang/{id}/huy', [OrderController::class, 'cancerOrder'])->name('order.cancel');
-});
+
+    //VOUCHER
+    Route::get('/voucher/{code}', [\App\Http\Controllers\VoucherController::class, 'getVoucher'])->name('voucher.get');
+// });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/san-pham/{id}', [ProductController::class, 'productDetail'])->name('product.detail');

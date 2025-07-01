@@ -9,7 +9,7 @@
                     @if ($key > 3)
                         @break      
                     @endif                                  
-                    <li class="nav-item"><a class="nav-link" href="#">{{ $pros->name }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('product.detail', $pros->id) }}">{{ $pros->name }}</a></li>
                    @endforeach
                 </ul>
             </div>

@@ -95,7 +95,7 @@
                                     <h4 class="mb-1"><a
                                             href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a>
                                     </h4>
-                                    <p><span class="emphasis">{{ $product->price }} Đ</span></p>
+                                    <p><span class="emphasis">{{ number_format($product->price, 0, ',', '.') }} Đ</span></p>
                                 </div>
                             @endforeach
                         </div>

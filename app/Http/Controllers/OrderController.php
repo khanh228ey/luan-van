@@ -6,6 +6,7 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Voucher;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -33,14 +34,13 @@ class OrderController extends Controller
             return redirect()->back()->with('error', 'Bạn cần đăng nhập để đặt hàng.');
         }
 
-        $grandTotal = $request->input('total') + $request->input('shipping_fee');
 
         $order = Order::create([
             'user_id' => $userId,
             'status' => $request->input('status', 0),
             'payment_method' => intval($request->input('payment_method', 0)),
             'payment_status' => $request->input('payment_status', 0),
-            'total' => $grandTotal,
+            'total' => $request->input('total'),
             'province' => $request->input('province'),
             'district' => $request->input('district'),
             'ward' => $request->input('ward'),
@@ -68,13 +68,22 @@ class OrderController extends Controller
         foreach ($cartItemIds as $cartItemId) {
             $productDetailId = $productDetailIds[$cartItemId] ?? null;
             if ($productDetailId) {
-                // Giả sử bạn có một phương thức để xóa mục giỏ hàng
                 Cart::where('user_id', $userId)
                     ->where('product_detail_id', $productDetailId)
                     ->delete();
             }
         }
-
+        // Giảm số lượng voucher nếu có code
+        $voucherCode = $request->input('code');
+        if ($order && $voucherCode) {
+            $voucher = Voucher::where('code', $voucherCode)->first();
+            if ($voucher) {
+                $voucher->quantity -= 1;
+                $voucher->save();
+            }
+            $order->voucher_id = $voucher->id;
+            $order->save();
+        }
         return view('pages.order_susscess', [
             'order' => $order,
         ])->with('success', 'Đặt hàng thành công!');
